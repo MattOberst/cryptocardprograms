@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="A strategic digital namespace for crypto-linked debit and credit card programs. Institutional naming architecture by Namespace Capital."/>
+<title>Crypto Card Programs &mdash; Institutional Naming Architecture</title>
+<link rel="icon" href="images/ccp-monogram.png" type="image/png"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased;}
+body{font-family:'DM Sans',system-ui,sans-serif;background:#080E1A;color:#E8F2FB;line-height:1;}
+img{display:block;max-width:100%;}
+a{text-decoration:none;color:inherit;}
+button{cursor:pointer;border:none;background:none;font:inherit;}
+::selection{background:rgba(74,158,232,0.25);}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:#0D1525;}
+::-webkit-scrollbar-thumb{background:#2C5F8A;border-radius:3px;}
+
+/* LAYOUT */
+.wrap{max-width:1200px;margin:0 auto;padding:0 40px;}
+@media(max-width:700px){.wrap{padding:0 22px;}}
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(232,242,251,0.07),transparent);}
+.eyebrow{font-family:'DM Sans',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:0.26em;text-transform:uppercase;color:rgba(74,158,232,0.80);margin-bottom:18px;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.5vw,3.2rem);font-weight:600;color:#fff;line-height:1.08;margin-bottom:16px;}
+.section-body{font-family:'DM Sans',sans-serif;font-size:15px;color:rgba(232,242,251,0.43);line-height:1.76;max-width:540px;}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;height:70px;display:flex;align-items:center;transition:background .3s,border-color .3s;border-bottom:1px solid transparent;}
+.nav.scrolled{background:rgba(8,14,26,0.96);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom-color:rgba(232,242,251,0.05);}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 40px;width:100%;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo img{height:36px;width:auto;object-fit:contain;}
+.nav-links{display:flex;gap:34px;list-style:none;}
+.nav-links a{font-size:11px;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;color:rgba(232,242,251,0.48);transition:color .2s;}
+.nav-links a:hover{color:rgba(232,242,251,0.90);}
+.nav-tog{display:none;flex-direction:column;gap:5px;padding:6px;}
+.nav-tog span{display:block;width:22px;height:1.5px;background:rgba(232,242,251,0.60);transition:all .2s;}
+.mob-menu{display:none;position:fixed;top:70px;left:0;right:0;background:rgba(8,14,26,0.98);border-bottom:1px solid rgba(232,242,251,0.05);z-index:99;}
+.mob-menu.open{display:block;}
+.mob-menu ul{list-style:none;padding:14px 22px 18px;}
+.mob-menu ul li a{display:block;font-size:12px;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;color:rgba(232,242,251,0.48);padding:9px 0;border-bottom:1px solid rgba(232,242,251,0.04);}
+@media(max-width:768px){.nav-links{display:none;}.nav-tog{display:flex;}.nav-inner{padding:0 22px;}}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 28px;font-size:12px;font-weight:700;letter-spacing:0.10em;text-transform:uppercase;border-radius:2px;transition:all .2s;}
+.btn-blue{background:#2C5F8A;color:#fff;}.btn-blue:hover{background:#3B72A0;}
+.btn-outline{border:1px solid rgba(232,242,251,0.14);color:rgba(232,242,251,0.62);}.btn-outline:hover{border-color:rgba(232,242,251,0.35);color:#E8F2FB;}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:70px;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#080E1A 0%,#0D1525 55%,#111D30 100%);z-index:0;}
+.hero-dots{position:absolute;inset:0;z-index:0;opacity:.024;background-image:linear-gradient(rgba(232,242,251,.6) 1px,transparent 1px),linear-gradient(90deg,rgba(232,242,251,.6) 1px,transparent 1px);background-size:60px 60px;}
+.hero-glow-a{position:absolute;top:25%;right:-80px;width:650px;height:650px;border-radius:50%;background:rgba(44,95,138,.055);filter:blur(90px);z-index:0;pointer-events:none;}
+.hero-content{position:relative;z-index:1;width:100%;padding:72px 0 96px;}
+.hero-cols{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+.hero-h1{font-family:'Cormorant Garamond',serif;font-size:clamp(3rem,5vw,4.8rem);font-weight:600;color:#fff;line-height:1.04;letter-spacing:-.02em;margin-bottom:20px;}
+.hero-h1 span{color:#4A9EE8;}
+.hero-sub{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;font-style:italic;color:rgba(232,242,251,0.66);line-height:1.38;margin-bottom:26px;}
+.hero-copy{font-size:15px;color:rgba(232,242,251,0.43);line-height:1.76;margin-bottom:38px;max-width:420px;}
+.hero-btns{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:52px;}
+.hero-stats{display:flex;gap:36px;padding-top:36px;border-top:1px solid rgba(232,242,251,0.07);}
+.stat-v{font-family:'Cormorant Garamond',serif;font-size:1.65rem;font-weight:600;color:#fff;line-height:1;margin-bottom:5px;}
+.stat-l{font-size:9px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(232,242,251,0.26);}
+.hero-vis{display:flex;justify-content:flex-end;position:relative;}
+.hero-vis-glow{position:absolute;inset:0;background:rgba(74,158,232,0.06);filter:blur(64px);border-radius:50%;transform:scale(.80) translateY(5%);}
+.hero-img{position:relative;width:100%;max-width:560px;height:auto;object-fit:contain;filter:drop-shadow(0 24px 52px rgba(0,0,0,.5));}
+.hero-fade{position:absolute;bottom:0;left:0;right:0;height:110px;background:linear-gradient(to top,#080E1A,transparent);z-index:1;pointer-events:none;}
+@media(max-width:860px){.hero-cols{grid-template-columns:1fr;gap:44px;}.hero-vis{justify-content:center;}.hero-img{max-width:400px;}.hero-stats{gap:22px;}}
+
+/* INSIGHT */
+.insight{background:#0D1525;padding:64px 0;}
+.insight-box{max-width:760px;margin:0 auto;text-align:center;}
+.insight-q{font-family:'Cormorant Garamond',serif;font-size:clamp(1.35rem,2.4vw,1.80rem);font-weight:600;color:#fff;line-height:1.34;margin-bottom:18px;}
+.insight-tag{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(232,242,251,0.28);}
+
+/* PORTFOLIO */
+.portfolio{padding:88px 0;background:#080E1A;}
+.port-hdr{margin-bottom:60px;}
+.port-diagram{border:1px solid rgba(232,242,251,0.05);border-radius:3px;overflow:hidden;margin-bottom:48px;}
+.port-diagram img{width:100%;height:auto;display:block;}
+.port-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.p-card{border:1px solid rgba(232,242,251,0.06);border-radius:3px;padding:30px;background:rgba(13,21,37,.50);transition:all .25s;position:relative;overflow:hidden;}
+.p-card:hover{background:rgba(13,21,37,.85);border-color:rgba(232,242,251,.12);transform:translateY(-2px);}
+.p-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(44,95,138,.50),transparent);opacity:0;transition:opacity .25s;}
+.p-card:hover::after{opacity:1;}
+.p-num{font-size:9.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(232,242,251,0.18);margin-bottom:12px;}
+.p-tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(74,158,232,0.70);background:rgba(44,95,138,0.12);border:1px solid rgba(44,95,138,0.22);padding:4px 10px;border-radius:2px;margin-bottom:16px;}
+.p-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;margin-bottom:10px;}
+.p-desc{font-size:13px;color:rgba(232,242,251,0.36);line-height:1.70;}
+@media(max-width:700px){.port-cards{grid-template-columns:1fr;}}
+
+/* DOMAINS */
+.domains{background:#080E1A;}
+.dom-hdr{padding:88px 0 0;}
+.dom-block{padding:64px 0;}
+.dom-cols{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;}
+.dom-cols.rev{direction:rtl;}.dom-cols.rev>*{direction:ltr;}
+.dom-tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(74,158,232,0.70);background:rgba(44,95,138,0.10);border:1px solid rgba(44,95,138,0.20);padding:5px 12px;border-radius:2px;margin-bottom:20px;}
+.dom-name{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,3vw,2.65rem);font-weight:600;color:#fff;line-height:1.10;margin-bottom:18px;}
+.dom-body{font-size:15px;color:rgba(232,242,251,0.43);line-height:1.78;margin-bottom:24px;}
+.dom-list{list-style:none;display:flex;flex-direction:column;gap:9px;}
+.dom-list li{display:flex;align-items:flex-start;gap:12px;font-size:13.5px;color:rgba(232,242,251,0.36);line-height:1.65;}
+.dom-list li::before{content:'';flex-shrink:0;width:4px;height:4px;border-radius:50%;background:#3B72A0;margin-top:8px;}
+.dom-vis{position:relative;}
+.dom-glow{position:absolute;inset:0;background:rgba(44,95,138,0.06);filter:blur(64px);border-radius:50%;transform:scale(.85);}
+.dom-img{position:relative;width:100%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 40px rgba(0,0,0,.45));}
+.dom-hr{height:1px;background:rgba(232,242,251,0.05);}
+@media(max-width:860px){.dom-cols{grid-template-columns:1fr;gap:40px;}.dom-cols.rev{direction:ltr;}}
+
+/* WHY */
+.why{background:#0D1525;padding:88px 0;}
+.why-callout{border:1px solid rgba(44,95,138,0.22);border-radius:3px;padding:36px 44px;background:rgba(44,95,138,0.06);margin-bottom:48px;}
+.why-q{font-family:'Cormorant Garamond',serif;font-size:clamp(1.3rem,2.2vw,1.65rem);font-weight:600;color:#fff;line-height:1.36;}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.w-card{border:1px solid rgba(232,242,251,0.06);border-radius:3px;padding:28px;background:rgba(13,21,37,.40);transition:all .25s;}
+.w-card:hover{background:rgba(13,21,37,.78);border-color:rgba(232,242,251,.11);transform:translateY(-2px);}
+.w-icon{color:#3B72A0;margin-bottom:16px;transition:color .2s;}
+.w-card:hover .w-icon{color:#4A9EE8;}
+.w-title{font-size:13.5px;font-weight:700;color:rgba(232,242,251,0.82);margin-bottom:9px;}
+.w-body{font-size:13px;color:rgba(232,242,251,0.34);line-height:1.70;}
+@media(max-width:860px){.why-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.why-grid{grid-template-columns:1fr;}.why-callout{padding:26px 22px;}}
+
+/* ABOUT */
+.about{background:#080E1A;padding:88px 0;}
+.about-cols{display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:start;}
+.about-p{font-size:15px;color:rgba(232,242,251,0.43);line-height:1.78;margin-bottom:16px;}
+.about-p.muted{color:rgba(232,242,251,0.30);}
+.about-attrs{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:36px;padding-top:28px;border-top:1px solid rgba(232,242,251,0.06);}
+.a-lbl{font-size:9.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,242,251,0.22);margin-bottom:5px;}
+.a-val{font-size:13px;font-weight:500;color:rgba(232,242,251,0.52);}
+@media(max-width:700px){.about-cols{grid-template-columns:1fr;gap:36px;}}
+
+/* CONTACT */
+.contact{background:#0D1525;padding:88px 0;}
+.contact-c{max-width:620px;margin:0 auto;text-align:center;}
+.contact-mono{width:56px;height:56px;object-fit:contain;opacity:.62;margin:0 auto 32px;}
+.contact-h2{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,3.5vw,3rem);font-weight:600;color:#fff;margin-bottom:18px;}
+.contact-p{font-size:15px;color:rgba(232,242,251,0.40);line-height:1.76;margin-bottom:8px;}
+.contact-note{font-size:13.5px;color:rgba(232,242,251,0.24);line-height:1.76;margin-bottom:40px;}
+.contact-email{display:inline-block;font-size:13.5px;color:rgba(232,242,251,0.36);transition:color .2s;margin-top:18px;}
+.contact-email:hover{color:rgba(232,242,251,.68);}
+.contact-legal{margin-top:52px;padding-top:28px;border-top:1px solid rgba(232,242,251,0.06);font-size:11px;color:rgba(232,242,251,0.17);line-height:1.80;}
+
+/* FOOTER */
+.footer{background:#080E1A;border-top:1px solid rgba(232,242,251,0.05);padding:48px 0;}
+.foot-inner{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:24px;}
+.foot-brand{display:flex;align-items:center;gap:16px;}
+.foot-mono{width:38px;height:38px;object-fit:contain;opacity:.60;}
+.foot-name{font-family:'Cormorant Garamond',serif;font-size:13.5px;font-weight:500;color:rgba(232,242,251,0.52);letter-spacing:.10em;text-transform:uppercase;}
+.foot-sub{font-size:9.5px;color:rgba(232,242,251,0.24);letter-spacing:.18em;text-transform:uppercase;margin-top:2px;}
+.foot-nav{display:flex;flex-wrap:wrap;gap:18px;list-style:none;}
+.foot-nav a{font-size:10.5px;font-weight:600;letter-spacing:.10em;text-transform:uppercase;color:rgba(232,242,251,0.26);transition:color .2s;}
+.foot-nav a:hover{color:rgba(232,242,251,.58);}
+.foot-copy{width:100%;padding-top:24px;border-top:1px solid rgba(232,242,251,0.04);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px;}
+.foot-copy p{font-size:10.5px;color:rgba(232,242,251,0.18);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">
+      <img src="images/ccp-wordmark.png" alt="Crypto Card Programs"/>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#overview" onclick="sTo('#overview');return false;">Overview</a></li>
+      <li><a href="#portfolio" onclick="sTo('#portfolio');return false;">Portfolio</a></li>
+      <li><a href="#domains" onclick="sTo('#domains');return false;">Domains</a></li>
+      <li><a href="#about" onclick="sTo('#about');return false;">About</a></li>
+      <li><a href="#contact" onclick="sTo('#contact');return false;">Contact</a></li>
+    </ul>
+    <button class="nav-tog" id="ntog" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mob-menu" id="mmenu">
+  <ul>
+    <li><a href="#overview" onclick="mNav('#overview')">Overview</a></li>
+    <li><a href="#portfolio" onclick="mNav('#portfolio')">Portfolio</a></li>
+    <li><a href="#domains" onclick="mNav('#domains')">Domains</a></li>
+    <li><a href="#about" onclick="mNav('#about')">About</a></li>
+    <li><a href="#contact" onclick="mNav('#contact')">Contact</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="overview">
+  <div class="hero-bg"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-glow-a"></div>
+  <div class="hero-content wrap">
+    <div class="hero-cols">
+      <div>
+        <p class="eyebrow">Institutional Naming Architecture</p>
+        <h1 class="hero-h1">Crypto Card<br><span>Programs</span></h1>
+        <p class="hero-sub">A strategic namespace for crypto-linked debit and credit card programs.</p>
+        <p class="hero-copy">Crypto Card Programs (CCP) is a curated digital namespace focused on premium naming assets serving the evolving crypto-linked payment ecosystem. The portfolio emphasizes clarity, consistency, and long-term strategic positioning across debit and credit card programs.</p>
+        <div class="hero-btns">
+          <a href="#portfolio" class="btn btn-blue" onclick="sTo('#portfolio');return false;">Explore the Namespace</a>
+          <a href="#domains" class="btn btn-outline" onclick="sTo('#domains');return false;">View the Portfolio</a>
+        </div>
+        <div class="hero-stats">
+          <div><p class="stat-v">Debit</p><p class="stat-l">Program Layer</p></div>
+          <div><p class="stat-v">Credit</p><p class="stat-l">Program Layer</p></div>
+          <div><p class="stat-v">CCP</p><p class="stat-l">Naming Control</p></div>
+          <div><p class="stat-v">4</p><p class="stat-l">Core Layers</p></div>
+        </div>
+      </div>
+      <div class="hero-vis">
+        <div class="hero-vis-glow"></div>
+        <img src="images/cryptodebit-hero.png" alt="CryptoDebit.ai — Flagship Naming Asset" class="hero-img"/>
+      </div>
+    </div>
+  </div>
+  <div class="hero-fade"></div>
+</section>
+
+<!-- INSIGHT -->
+<div class="insight">
+  <div class="insight-box wrap">
+    <p class="insight-q">&ldquo;CCP is not a product. It is the naming infrastructure that turns crypto-linked debit and credit programs into a recognized, organized category.&rdquo;</p>
+    <p class="insight-tag">Institutional Naming Architecture &middot; Crypto Card Programs</p>
+  </div>
+</div>
+
+<!-- PORTFOLIO -->
+<section class="portfolio" id="portfolio">
+  <div class="wrap">
+    <div class="port-hdr">
+      <p class="eyebrow">Portfolio</p>
+      <h2 class="section-title">Featured Namespace Assets</h2>
+      <p class="section-body">Crypto Card Programs is centered on a focused portfolio of premium naming assets designed for crypto-linked payment ecosystems.</p>
+    </div>
+    <div class="port-diagram">
+      <img src="images/ccp-portfolio.png" alt="CCP Portfolio — CryptoDebit.ai, CryptoDebitCards.ai, CryptoCreditCards.ai" loading="lazy"/>
+    </div>
+    <div class="port-cards">
+      <div class="p-card">
+        <p class="p-num">01</p>
+        <span class="p-tag">Debit Program Architecture</span>
+        <h3 class="p-name">CryptoDebit.ai</h3>
+        <p class="p-desc">Flagship namespace for crypto-linked debit card initiatives. The primary short-form anchor for crypto debit program identification.</p>
+      </div>
+      <div class="p-card">
+        <p class="p-num">02</p>
+        <span class="p-tag">Debit Card Namespace</span>
+        <h3 class="p-name">CryptoDebitCards.ai</h3>
+        <p class="p-desc">Focused namespace dedicated to debit card programs and related ecosystems. Long-form descriptive anchor for institutional and regulatory contexts.</p>
+      </div>
+      <div class="p-card">
+        <p class="p-num">03</p>
+        <span class="p-tag">Credit Card Namespace</span>
+        <h3 class="p-name">CryptoCreditCards.ai</h3>
+        <p class="p-desc">Focused namespace dedicated to crypto-linked credit card programs. Establishes clean separation from the debit vertical within regulated environments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- DOMAINS -->
+<section class="domains" id="domains">
+  <div class="dom-hdr wrap">
+    <p class="eyebrow">Individual Domains</p>
+    <h2 class="section-title">The Naming Architecture</h2>
+  </div>
+
+  <!-- Domain 1 -->
+  <div class="dom-block wrap">
+    <div class="dom-cols">
+      <div class="dom-vis">
+        <div class="dom-glow"></div>
+        <img src="images/cryptodebit-hero.png" alt="CryptoDebit.ai" class="dom-img" loading="lazy"/>
+      </div>
+      <div>
+        <span class="dom-tag">Debit Program Architecture</span>
+        <h3 class="dom-name">CryptoDebit.ai</h3>
+        <p class="dom-body">The flagship namespace asset for crypto-linked debit card programs. CryptoDebit.ai represents the primary short-form naming anchor for the debit vertical &mdash; designed for institutional clarity, regulatory legibility, and long-term strategic positioning.</p>
+        <ul class="dom-list">
+          <li>Primary short-form anchor for debit program identification</li>
+          <li>Highest-utility naming surface in the CCP stack</li>
+          <li>Designed for institutional and regulatory-facing contexts</li>
+          <li>AI-aligned naming architecture for future infrastructure compatibility</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="dom-hr wrap"></div>
+
+  <!-- Domain 2 -->
+  <div class="dom-block wrap">
+    <div class="dom-cols rev">
+      <div class="dom-vis">
+        <div class="dom-glow"></div>
+        <img src="images/cryptodebitcards.png" alt="CryptoDebitCards.ai" class="dom-img" loading="lazy"/>
+      </div>
+      <div>
+        <span class="dom-tag">Debit Card Namespace</span>
+        <h3 class="dom-name">CryptoDebitCards.ai</h3>
+        <p class="dom-body">The long-form descriptive anchor for the crypto debit card program vertical. Oriented toward documentation, regulatory communication, and institutional contexts where full descriptive precision reinforces clarity.</p>
+        <ul class="dom-list">
+          <li>Long-form debit card namespace for institutional positioning</li>
+          <li>Regulatory and documentation-facing naming surface</li>
+          <li>Extends and reinforces CryptoDebit.ai within the debit vertical</li>
+          <li>Consistent naming across program communication environments</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="dom-hr wrap"></div>
+
+  <!-- Domain 3 -->
+  <div class="dom-block wrap">
+    <div class="dom-cols">
+      <div class="dom-vis">
+        <div class="dom-glow"></div>
+        <img src="images/cryptocreditcards.png" alt="CryptoCreditCards.ai" class="dom-img" loading="lazy"/>
+      </div>
+      <div>
+        <span class="dom-tag">Credit Card Namespace</span>
+        <h3 class="dom-name">CryptoCreditCards.ai</h3>
+        <p class="dom-body">The primary namespace for crypto-linked credit card programs. CryptoCreditCards.ai establishes clean institutional separation between the credit and debit verticals &mdash; a structural distinction that matters within regulated card program environments.</p>
+        <ul class="dom-list">
+          <li>Primary credit namespace for crypto-linked card programs</li>
+          <li>Establishes clean separation from the debit vertical</li>
+          <li>Supports institutional positioning within regulated environments</li>
+          <li>Long-term naming value within the financial ecosystem</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- WHY CCP -->
+<section class="why">
+  <div class="wrap">
+    <div style="margin-bottom:56px;">
+      <p class="eyebrow">Why Crypto Card Programs</p>
+      <h2 class="section-title">Strategic Namespace Positioning</h2>
+      <p class="section-body">Five reasons why CCP represents a considered, long-term investment in premium digital namespace within the crypto-linked card program category.</p>
+    </div>
+    <div class="why-callout">
+      <p class="why-q">&ldquo;CCP is not a product. It is the naming infrastructure that turns crypto-linked debit and credit programs into a recognized, organized category.&rdquo;</p>
+    </div>
+    <div class="why-grid">
+      <div class="w-card">
+        <div class="w-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+        <h3 class="w-title">Premium Digital Real Estate</h3>
+        <p class="w-body">A concentrated portfolio of high-value namespace assets within the crypto card program category &mdash; acquired for long-term institutional positioning.</p>
+      </div>
+      <div class="w-card">
+        <div class="w-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+        <h3 class="w-title">Consistent Naming Architecture</h3>
+        <p class="w-body">Every asset in the CCP portfolio follows a disciplined naming structure &mdash; debit and credit separation built into the namespace layer from the foundation.</p>
+      </div>
+      <div class="w-card">
+        <div class="w-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h3 class="w-title">Clear Category Positioning</h3>
+        <p class="w-body">CryptoCardPrograms.com establishes a recognizable category identity above the operational naming layer &mdash; a stable institutional reference surface.</p>
+      </div>
+      <div class="w-card">
+        <div class="w-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3 class="w-title">Long-Term Strategic Value</h3>
+        <p class="w-body">As crypto-linked card programs mature within regulated financial environments, naming clarity and program separation become increasingly relevant to institutional operations.</p>
+      </div>
+      <div class="w-card">
+        <div class="w-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <h3 class="w-title">Future-Ready Naming</h3>
+        <p class="w-body">The .ai extension aligns the operational naming layer with the direction of modern financial infrastructure &mdash; AI-assisted systems, programmable operations, and evolving card program environments.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-cols">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2 class="section-title">Namespace Capital</h2>
+      </div>
+      <div>
+        <p class="about-p">Namespace Capital acquires and develops premium digital namespace assets focused on emerging technology sectors. The firm applies a disciplined, long-term approach to identifying and holding strategic naming positions within categories that are forming institutional significance.</p>
+        <p class="about-p muted">Crypto Card Programs represents Namespace Capital&rsquo;s focused investment in the naming architecture for crypto-linked debit and credit card programs &mdash; a category undergoing structural development within regulated financial environments.</p>
+        <p class="about-p muted">The portfolio reflects a consistent philosophy: concentrated, purposeful namespace positions that align with the institutional direction of their respective categories.</p>
+        <div class="about-attrs">
+          <div><p class="a-lbl">Sector</p><p class="a-val">Crypto Payments</p></div>
+          <div><p class="a-lbl">Focus</p><p class="a-val">Card Programs</p></div>
+          <div><p class="a-lbl">Approach</p><p class="a-val">Institutional</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-c wrap">
+    <img src="images/ccp-monogram.png" alt="CCP" class="contact-mono" loading="lazy"/>
+    <p class="eyebrow" style="text-align:center;">Contact</p>
+    <h2 class="contact-h2">Begin the Conversation</h2>
+    <p class="contact-p">Namespace inquiries are handled directly through Namespace Capital. All correspondence is treated with strict confidentiality.</p>
+    <p class="contact-note">Broker intermediaries are welcome.</p>
+    <a href="mailto:acquire@namespacecapital.com" class="btn btn-blue">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Contact Namespace Capital
+    </a>
+    <div><a href="mailto:acquire@namespacecapital.com" class="contact-email">acquire@namespacecapital.com</a></div>
+    <div class="contact-legal">Crypto Card Programs is a digital namespace asset portfolio.<br>It is not an operating card program, issuer, or financial institution.</div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="foot-inner">
+      <div class="foot-brand">
+        <img src="images/ccp-monogram.png" alt="CCP" class="foot-mono"/>
+        <div>
+          <p class="foot-name">Crypto Card Programs</p>
+          <p class="foot-sub">Institutional Naming Architecture</p>
+        </div>
+      </div>
+      <ul class="foot-nav">
+        <li><a href="#overview" onclick="sTo('#overview');return false;">Overview</a></li>
+        <li><a href="#portfolio" onclick="sTo('#portfolio');return false;">Portfolio</a></li>
+        <li><a href="#domains" onclick="sTo('#domains');return false;">Domains</a></li>
+        <li><a href="#about" onclick="sTo('#about');return false;">About</a></li>
+        <li><a href="#contact" onclick="sTo('#contact');return false;">Contact</a></li>
+      </ul>
+    </div>
+    <div class="foot-copy">
+      <p>&copy; 2025 Crypto Card Programs. All rights reserved.</p>
+      <p>A Namespace Capital Portfolio Asset</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+var nav=document.getElementById('nav');
+window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>20);},{passive:true});
+function sTo(id){var el=document.querySelector(id);if(!el)return;var top=el.getBoundingClientRect().top+window.scrollY-70;window.scrollTo({top:top,behavior:'smooth'});}
+var tog=document.getElementById('ntog'),mm=document.getElementById('mmenu');
+tog.addEventListener('click',function(){mm.classList.toggle('open');});
+function mNav(id){mm.classList.remove('open');setTimeout(function(){sTo(id);},10);return false;}
+</script>
+</body>
+</html>
